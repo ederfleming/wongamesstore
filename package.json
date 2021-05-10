@@ -1,5 +1,5 @@
 {
-  "name": "typescript-boilerplate",
+  "name": "wongames-store",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -7,11 +7,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint src --max-warnings=0",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
     "test": "jest --maxWorkers=50%",
     "test:watch": "jest --watch --maxWorkers=25%",
+    "test:ci": "jest --runInBand",
+    "schema:download": "apollo client:download-schema --endpoint=http://localhost:1337/graphql schema-temp.gql",
+    "schema:convert": "node convertToNonNull.js",
+    "codegen": "apollo codegen:generate --target typescript --excludes=node_modules/ --includes=src/graphql/**/*.ts --localSchemaFile schema.gql --tagName=gql --outputFlat src/graphql/generated",
+    "types:generate": "yarn schema:download && yarn schema:convert && yarn codegen",
     "generate": "yarn plop --plopfile generators/plopfile.js",
     "storybook": "start-storybook -s ./public -p 6006",
-    "build-storybook": "build-storybook -s ./public"
+    "build-storybook": "build-storybook -s ./public",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "src/**/*": [
@@ -20,28 +27,36 @@
     ]
   },
   "dependencies": {
+    "@styled-icons/material-outlined": "^10.28.0",
     "next": "10.2.0",
-    "next-pwa": "^5.2.15",
+    "next-pwa": "^5.2.21",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "styled-components": "5.2.3"
+
+    "styled-components": "5.3.0",
+
+    "styled-icons": "^10.33.0",
+
+    "styled-media-query": "^2.1.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.16",
+    "@babel/core": "^7.14.0",
     "@babel/preset-typescript": "^7.13.0",
     "@storybook/addon-essentials": "6.2.9",
     "@storybook/react": "6.2.9",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@types/jest": "^26.0.23",
-    "@types/node": "^15.0.1",
+    "@types/node": "^15.0.2",
     "@types/react": "^17.0.4",
     "@types/styled-components": "^5.1.9",
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
+
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
     "@typescript-eslint/parser": "^4.22.1",
+
     "babel-loader": "^8.2.2",
     "babel-plugin-styled-components": "^1.12.0",
-    "eslint": "^7.25.0",
+    "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
@@ -51,7 +66,7 @@
     "jest-styled-components": "^7.0.4",
     "lint-staged": "^10.5.4",
     "plop": "^2.7.4",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.0",
     "storybook-addon-next-router": "^2.0.4",
     "typescript": "^4.2.4"
   }
