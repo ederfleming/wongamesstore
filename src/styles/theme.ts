@@ -15,7 +15,7 @@ export default {
       bold: 600
     },
     sizes: {
-      xsmall: '1.2rem',
+      xsmall: '1.2rem', //12px
       small: '1.4rem',
       medium: '1.6rem',
       large: '1.8rem',
@@ -27,6 +27,7 @@ export default {
     primary: '#F231A5',
     secondary: '#3CD3C1',
     mainBg: '#06092B',
+    lightBg: '#F2F2F2',
     white: '#FAFAFA',
     black: '#030517',
     lightGray: '#EAEAEA',
@@ -49,4 +50,4 @@ export default {
     modal: 40,
     alwaysOnTop: 50
   }
-}
+} as const
