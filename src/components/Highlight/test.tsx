@@ -1,8 +1,10 @@
 import { screen } from '@testing-library/react'
+
 import { renderWithTheme } from 'utils/tests/helpers'
 
-import Highlight from '.'
 import * as S from './styles'
+
+import Highlight from '.'
 
 const props = {
   title: 'Heading 1',

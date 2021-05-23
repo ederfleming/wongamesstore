@@ -1,7 +1,10 @@
 import { screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+
 import { Email } from '@styled-icons/material-outlined'
+import userEvent from '@testing-library/user-event'
+
 import { renderWithTheme } from 'utils/tests/helpers'
+
 import TextField from '.'
 describe('<TextField />', () => {
   it('Renders with Label', () => {

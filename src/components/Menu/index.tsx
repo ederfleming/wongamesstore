@@ -1,16 +1,16 @@
 import Link from 'next/link'
-
 import { useState } from 'react'
-import { Menu2 as MenuIcon } from '@styled-icons/remix-fill/Menu2'
-import { ShoppingCart as ShoppingCartIcon } from '@styled-icons/material-outlined/ShoppingCart'
-import { Search as SearchIcon } from '@styled-icons/material-outlined/Search'
+
 import { Close as CloseIcon } from '@styled-icons/material-outlined/Close'
+import { Search as SearchIcon } from '@styled-icons/material-outlined/Search'
+import { ShoppingCart as ShoppingCartIcon } from '@styled-icons/material-outlined/ShoppingCart'
+import { Menu2 as MenuIcon } from '@styled-icons/remix-fill/Menu2'
 
 import Button from 'components/Button'
 import Logo from 'components/Logo'
+import MediaMatch from 'components/MediaMatch'
 
 import * as S from './styles'
-import MediaMatch from 'components/MediaMatch'
 
 export type MenuProps = {
   username?: string
@@ -28,12 +28,18 @@ const Menu = ({ username }: MenuProps) => {
       </MediaMatch>
 
       <S.LogoWrapper>
-        <Logo hideOnMobile />
+        <Link href="/" passHref>
+          <a>
+            <Logo hideOnMobile />
+          </a>
+        </Link>
       </S.LogoWrapper>
 
       <MediaMatch greaterThan="medium">
         <S.MenuNav>
-          <S.MenuLink href="#">Home</S.MenuLink>
+          <Link href="/" passHref>
+            <S.MenuLink>Home</S.MenuLink>
+          </Link>
           <S.MenuLink href="#">Store</S.MenuLink>
         </S.MenuNav>
       </MediaMatch>
@@ -57,7 +63,9 @@ const Menu = ({ username }: MenuProps) => {
       <S.MenuFull aria-hidden={!isOpen} isOpen={isOpen}>
         <CloseIcon aria-label="Close Menu" onClick={() => setIsOpen(false)} />
         <S.MenuNav>
-          <S.MenuLink href="#">Home</S.MenuLink>
+          <Link href="/" passHref>
+            <S.MenuLink>Home</S.MenuLink>
+          </Link>
           <S.MenuLink href="#">Store</S.MenuLink>
           {!!username && (
             <>

@@ -1,10 +1,10 @@
+import Base from 'templates/Base'
+
 import { BannerProps } from 'components/Banner'
+import BannerSlider from 'components/BannerSlider'
+import { Container } from 'components/Container'
 import { GameCardProps } from 'components/GameCard'
 import { HighlightProps } from 'components/Highlight'
-
-import Base from 'templates/Base'
-import { Container } from 'components/Container'
-import BannerSlider from 'components/BannerSlider'
 import Showcase from 'components/Showcase'
 
 import * as S from './styles'

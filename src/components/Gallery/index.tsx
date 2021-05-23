@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import SlickSlider from 'react-slick'
 
+import { Close } from '@styled-icons/material-outlined'
 import { ArrowBackIos as ArrowLeft } from '@styled-icons/material-outlined/ArrowBackIos'
 import { ArrowForwardIos as ArrowRight } from '@styled-icons/material-outlined/ArrowForwardIos'
-import { Close } from '@styled-icons/material-outlined'
 
 import Slider, { SliderSettings } from 'components/Slider'
 

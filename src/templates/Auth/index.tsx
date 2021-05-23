@@ -1,6 +1,8 @@
 import Link from 'next/link'
+
 import Heading from 'components/Heading'
 import Logo from 'components/Logo'
+
 import * as S from './styles'
 
 type AuthProps = {

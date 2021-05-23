@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components'
 import { darken } from 'polished'
+import styled, { css } from 'styled-components'
 
-import * as TextFieldStyles from 'components/TextField/styles'
 import * as ButtonStyles from 'components/Button/styles'
+import * as TextFieldStyles from 'components/TextField/styles'
 
 export const FormWrapper = styled.div`
   ${({ theme }) => css`
