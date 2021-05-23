@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import TextContent, { TextContextProps } from '.'
+import TextContent, { TextContentProps } from '.'
 import textMock from './mock'
 
 export default {
@@ -13,6 +13,6 @@ export default {
   }
 } as Meta
 
-export const Default: Story<TextContextProps> = (args) => (
+export const Default: Story<TextContentProps> = (args) => (
   <TextContent {...args} />
 )
