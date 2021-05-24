@@ -18,7 +18,7 @@ export const Footer = styled.div`
   ${({ theme }) => css`
     background: ${tint(0.2, theme.colors.lightGray)};
     color: ${theme.colors.black};
-    font-weight: ${theme.font.bold};
+    font-weight: ${theme.font.weight.bold};
     padding: ${theme.spacings.small};
     display: flex;
     align-items: center;
