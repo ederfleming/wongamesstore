@@ -91,7 +91,7 @@ const wrapperModifiers = {
     ${HeadingStyles.Wrapper} {
       color: ${theme.colors.black};
       font-size: ${theme.font.sizes.xlarge};
-      font-weight: ${theme.font.normal};
+      font-weight: ${theme.font.weight.normal};
     }
     ${RadioStyles.Label},
     ${CheckboxStyles.Label} {
