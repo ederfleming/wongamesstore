@@ -1,28 +1,28 @@
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from 'styled-components'
+
+import { useApollo } from 'utils/apollo'
 
 import GlobalStyles from 'styles/global'
 import theme from 'styles/theme'
 
 function App({ Component, pageProps }: AppProps) {
-  const client = new ApolloClient({
-    uri: 'http://localhost:1337/graphql',
-    cache: new InMemoryCache()
-  })
+  const client = useApollo(pageProps.initialApolloState)
+
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         <Head>
-          <title>React Avançado - Boilerplate</title>
+          <title>Won Games</title>
           <link rel="shortcut icon" href="/img/icon-512.png" />
           <link rel="apple-touch-icon" href="/img/icon-512.png" />
           <link rel="manifest" href="/manifest.json" />
           <meta
             name="description"
-            content="A simple project starter to work with TypeScript, React, NextJS and Styled Components"
+            content="The best Game Stores in the world!"
           />
         </Head>
         <GlobalStyles />
@@ -31,5 +31,4 @@ function App({ Component, pageProps }: AppProps) {
     </ApolloProvider>
   )
 }
-
 export default App
