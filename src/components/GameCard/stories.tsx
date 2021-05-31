@@ -6,11 +6,12 @@ export default {
   title: 'GameCard',
   component: GameCard,
   args: {
+    slug: 'population-zero',
     title: 'Population Zero',
     developer: 'Rockstar Games',
     img: 'https://source.unsplash.com/user/willianjusten/300x140',
-    price: 'R$189,00',
-    promotionalPrice: 'R$109,00'
+    price: 189,
+    promotionalPrice: 109
   },
   argTypes: {
     onFav: { action: 'clicked' },

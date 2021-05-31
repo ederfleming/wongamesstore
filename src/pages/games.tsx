@@ -22,12 +22,10 @@ export async function getStaticProps() {
       revalidate: 60,
       games: data.games.map((game) => ({
         title: game.name,
+        slug: game.slug,
         developer: game.developers[0].name,
         img: `http://localhost:1337${game.cover!.url}`,
-        price: new Intl.NumberFormat('pt-BR', {
-          style: 'currency',
-          currency: 'BRL'
-        }).format(game.price)
+        price: game.price
       })),
       filterItems: filterItemsMock
     }
