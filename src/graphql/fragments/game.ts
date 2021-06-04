@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const BannerFragment = gql`
+export const GameFragment = gql`
   fragment GameFragment on Game {
     name
     slug
