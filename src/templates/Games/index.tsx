@@ -1,7 +1,5 @@
-import { useQuery } from '@apollo/client'
 import { KeyboardArrowDown } from '@styled-icons/material-outlined'
-import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames'
-import { QUERY_GAMES } from 'graphql/queries/games'
+import { useQueryGames } from 'graphql/queries/games'
 
 import Base from 'templates/Base'
 
@@ -17,7 +15,7 @@ export type GamesTemplateProps = {
 }
 
 const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
-  const { data } = useQuery<QueryGames, QueryGamesVariables>(QUERY_GAMES, {
+  const { data, loading, fetchMore } = useQueryGames({
     variables: { limit: 15 }
   })
 
@@ -25,33 +23,36 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
     return
   }
   const handleShowMore = () => {
-    return
+    fetchMore({ variables: { limit: 15, start: data?.games.length } })
   }
 
   return (
     <Base>
       <S.Main>
         <ExploreSidebar items={filterItems} onFilter={handleFilter} />
+        {loading ? (
+          <p>Loading...</p> //todo loading
+        ) : (
+          <section>
+            <Grid>
+              {data?.games.map((game) => (
+                <GameCard
+                  key={game.slug}
+                  title={game.name}
+                  slug={game.slug}
+                  developer={game.developers[0].name}
+                  img={`http://localhost:1337${game.cover!.url}`}
+                  price={game.price}
+                />
+              ))}
+            </Grid>
 
-        <section>
-          <Grid>
-            {data?.games.map((game) => (
-              <GameCard
-                key={game.slug}
-                title={game.name}
-                slug={game.slug}
-                developer={game.developers[0].name}
-                img={`http://localhost:1337${game.cover!.url}`}
-                price={game.price}
-              />
-            ))}
-          </Grid>
-
-          <S.ShowMore role="button" onClick={handleShowMore}>
-            <p>Show more</p>
-            <KeyboardArrowDown size={24} />
-          </S.ShowMore>
-        </section>
+            <S.ShowMore role="button" onClick={handleShowMore}>
+              <p>Show more</p>
+              <KeyboardArrowDown size={24} />
+            </S.ShowMore>
+          </section>
+        )}
       </S.Main>
     </Base>
   )
