@@ -6,7 +6,8 @@ export default {
   title: 'ExploreSidebar',
   component: ExploreSidebar,
   args: {
-    items
+    items,
+    onFilter: () => console.log('filter')
   },
   parameters: {
     layout: 'fullscreen',
