@@ -1,37 +1,59 @@
-import { KeyboardArrowDown } from '@styled-icons/material-outlined'
+import { useRouter } from 'next/router'
+
+import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/KeyboardArrowDown'
 import { useQueryGames } from 'graphql/queries/games'
+import { ParsedUrlQueryInput } from 'querystring'
 
 import Base from 'templates/Base'
 
+import { parseQueryStringToFilter, parseQueryStringToWhere } from 'utils/filter'
+
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
-import GameCard, { GameCardProps } from 'components/GameCard'
+import GameCard from 'components/GameCard'
 import { Grid } from 'components/Grid'
 
 import * as S from './styles'
 
 export type GamesTemplateProps = {
-  games?: GameCardProps[]
   filterItems: ItemProps[]
 }
 
 const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
+  const { push, query } = useRouter()
+
   const { data, loading, fetchMore } = useQueryGames({
-    variables: { limit: 15 }
+    variables: {
+      limit: 15,
+      where: parseQueryStringToWhere({ queryString: query, filterItems }),
+      sort: query.sort as string | null
+    }
   })
 
-  const handleFilter = () => {
+  const handleFilter = (items: ParsedUrlQueryInput) => {
+    push({
+      pathname: '/games',
+      query: items
+    })
     return
   }
+
   const handleShowMore = () => {
     fetchMore({ variables: { limit: 15, start: data?.games.length } })
   }
-
   return (
     <Base>
       <S.Main>
-        <ExploreSidebar items={filterItems} onFilter={handleFilter} />
+        <ExploreSidebar
+          initialValues={parseQueryStringToFilter({
+            queryString: query,
+            filterItems
+          })}
+          items={filterItems}
+          onFilter={handleFilter}
+        />
+
         {loading ? (
-          <p>Loading...</p> //todo loading
+          <p>Loading...</p>
         ) : (
           <section>
             <Grid>
@@ -46,10 +68,9 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
                 />
               ))}
             </Grid>
-
             <S.ShowMore role="button" onClick={handleShowMore}>
-              <p>Show more</p>
-              <KeyboardArrowDown size={24} />
+              <p>Show More</p>
+              <ArrowDown size={35} />
             </S.ShowMore>
           </section>
         )}
@@ -57,5 +78,4 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
     </Base>
   )
 }
-
 export default GamesTemplate
