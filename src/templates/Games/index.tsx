@@ -18,25 +18,15 @@ import * as S from './styles'
 export type GamesTemplateProps = {
   filterItems: ItemProps[]
 }
-
 const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
   const { push, query } = useRouter()
-
   const { data, loading, fetchMore } = useQueryGames({
-    notifyOnNetworkStatusChange: true,
     variables: {
       limit: 15,
       where: parseQueryStringToWhere({ queryString: query, filterItems }),
       sort: query.sort as string | null
     }
   })
-
-  if (!data) return <p>loading...</p>
-
-  const { games, gamesConnection } = data
-
-  const hasMoreGames = games.length < (gamesConnection?.values?.length || 0)
-
   const handleFilter = (items: ParsedUrlQueryInput) => {
     push({
       pathname: '/games',
@@ -44,11 +34,9 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
     })
     return
   }
-
   const handleShowMore = () => {
     fetchMore({ variables: { limit: 15, start: data?.games.length } })
   }
-
   return (
     <Base>
       <S.Main>
@@ -60,50 +48,41 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
           items={filterItems}
           onFilter={handleFilter}
         />
-
-        <section>
-          {data?.games.length ? (
-            <>
-              <Grid>
-                {data?.games.map((game) => (
-                  <GameCard
-                    id={game.id}
-                    key={game.slug}
-                    title={game.name}
-                    slug={game.slug}
-                    developer={game.developers[0].name}
-                    img={`http://localhost:1337${game.cover!.url}`}
-                    price={game.price}
-                  />
-                ))}
-              </Grid>
-              {hasMoreGames && (
-                <S.ShowMore>
-                  {loading ? (
-                    <S.ShowMoreLoading
-                      src="/img/dots.svg"
-                      alt="Loading more games..."
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <section>
+            {data?.games.length ? (
+              <>
+                <Grid>
+                  {data?.games.map((game) => (
+                    <GameCard
+                      key={game.slug}
+                      title={game.name}
+                      slug={game.slug}
+                      developer={game.developers[0].name}
+                      img={`http://localhost:1337${game.cover!.url}`}
+                      price={game.price}
                     />
-                  ) : (
-                    <S.ShowMoreButton onClick={handleShowMore}>
-                      <p>Show More</p>
-                      <ArrowDown size={35} />
-                    </S.ShowMoreButton>
-                  )}
+                  ))}
+                </Grid>
+
+                <S.ShowMore role="button" onClick={handleShowMore}>
+                  <p>Show More</p>
+                  <ArrowDown size={35} />
                 </S.ShowMore>
-              )}
-            </>
-          ) : (
-            <Empty
-              title=":("
-              description="We didn't find any games with this filter"
-              hasLink
-            />
-          )}
-        </section>
+              </>
+            ) : (
+              <Empty
+                title=":("
+                description="We didn't find any games with this filter"
+                hasLink
+              />
+            )}
+          </section>
+        )}
       </S.Main>
     </Base>
   )
 }
-
 export default GamesTemplate

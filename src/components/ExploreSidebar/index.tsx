@@ -18,16 +18,20 @@ export type ItemProps = {
   type: string
   fields: Field[]
 }
+
 type Field = {
   label: string
   name: string
 }
+
 type Values = ParsedUrlQueryInput
+
 export type ExploreSidebarProps = {
   items: ItemProps[]
   initialValues?: Values
   onFilter: (values: Values) => void
 }
+
 const ExploreSidebar = ({
   items,
   onFilter,
@@ -63,12 +67,14 @@ const ExploreSidebar = ({
         <FilterList aria-label="open filters" onClick={() => setIsOpen(true)} />
         <Close aria-label="close filters" onClick={() => setIsOpen(false)} />
       </S.IconWrapper>
+
       <S.Content>
         {items.map((item) => (
           <S.Items key={item.title}>
             <Heading lineBottom lineColor="secondary" size="small">
               {item.title}
             </Heading>
+
             {item.type === 'checkbox' &&
               item.fields.map((field) => (
                 <Checkbox
@@ -82,6 +88,7 @@ const ExploreSidebar = ({
                   onCheck={() => handleCheckbox(item.name, field.name)}
                 />
               ))}
+
             {item.type === 'radio' &&
               item.fields.map((field) => (
                 <Radio
@@ -109,4 +116,5 @@ const ExploreSidebar = ({
     </S.Wrapper>
   )
 }
+
 export default ExploreSidebar

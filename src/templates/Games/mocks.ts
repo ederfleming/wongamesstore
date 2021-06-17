@@ -1,5 +1,4 @@
 import { QUERY_GAMES } from 'graphql/queries/games'
-
 export const noGamesMock = {
   request: {
     query: QUERY_GAMES,
@@ -15,7 +14,6 @@ export const noGamesMock = {
     }
   }
 }
-
 export const gamesMock = {
   request: {
     query: QUERY_GAMES,
@@ -43,7 +41,6 @@ export const gamesMock = {
     }
   }
 }
-
 export const fetchMoreMock = {
   request: {
     query: QUERY_GAMES,

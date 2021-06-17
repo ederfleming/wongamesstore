@@ -6,7 +6,7 @@ import { QUERY_GAMES } from 'graphql/queries/games'
 import GamesTemplate, { GamesTemplateProps } from 'templates/Games'
 
 import { initializeApollo } from 'utils/apollo'
-import { parseQueryStringToWhere } from 'utils/filter/index'
+import { parseQueryStringToWhere } from 'utils/filter'
 
 export default function GamesPage(props: GamesTemplateProps) {
   return <GamesTemplate {...props} />
