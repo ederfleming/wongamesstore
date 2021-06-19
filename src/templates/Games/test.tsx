@@ -9,7 +9,7 @@ import { renderWithTheme } from 'utils/tests/helpers'
 import filterItemsMock from 'components/ExploreSidebar/mock'
 
 import Games from '.'
-import { fetchMoreMock, gamesMock } from './mocks'
+import { fetchMoreMock, gamesMock, noGamesMock } from './mocks'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
@@ -54,7 +54,7 @@ describe('<Games />', () => {
 
   it('should render empty when no games found', async () => {
     renderWithTheme(
-      <MockedProvider mocks={[]} addTypename={false}>
+      <MockedProvider mocks={[noGamesMock]} addTypename={false}>
         <Games filterItems={filterItemsMock} />
       </MockedProvider>
     )
