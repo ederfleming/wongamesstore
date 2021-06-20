@@ -39,8 +39,7 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
 
   const { games, gamesConnection } = data
 
-  const hasMoreGames = games?.length < gamesConnection?.values?.length || 0
-
+  const hasMoreGames = games?.length < (gamesConnection?.values?.length || 0)
   const handleShowMore = () => {
     fetchMore({ variables: { limit: 15, start: data?.games.length } })
   }
