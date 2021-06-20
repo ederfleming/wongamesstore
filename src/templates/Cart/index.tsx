@@ -20,7 +20,7 @@ export type CartProps = {
   Pick<PaymentOptionsProps, 'cards'>
 
 const Cart = ({
-  recommendedTitle = 'You may like these games',
+  recommendedTitle,
   recommendedGames,
   recommendedHighlight,
   items,
