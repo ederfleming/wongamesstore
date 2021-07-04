@@ -41,8 +41,8 @@
           ["/react/", "/^next/"],
           ["/styled-component/", "module"],
           "/templates/",
-          "/utils/",
           "/components/",
+          "/utils/",
           "/styles/",
           ["parent", "sibling", "index"]
         ],
