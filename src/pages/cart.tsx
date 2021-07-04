@@ -3,11 +3,11 @@ import { QUERY_RECOMMENDED } from 'graphql/queries/recommended'
 
 import Cart, { CartProps } from 'templates/Cart'
 
-import { initializeApollo } from 'utils/apollo'
-import { gamesMapper, highlightMapper } from 'utils/mappers'
-
 import itemsMock from 'components/CartList/mock'
 import cardsMock from 'components/PaymentOptions/mock'
+
+import { initializeApollo } from 'utils/apollo'
+import { gamesMapper, highlightMapper } from 'utils/mappers'
 
 export default function CartPage(props: CartProps) {
   return <Cart {...props} />

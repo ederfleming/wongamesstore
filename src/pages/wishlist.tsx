@@ -3,10 +3,10 @@ import { QUERY_RECOMMENDED } from 'graphql/queries/recommended'
 
 import Wishlist, { WishlistTemplateProps } from 'templates/Wishlist'
 
+import gamesMock from 'components/GameCardSlider/mock'
+
 import { initializeApollo } from 'utils/apollo'
 import { gamesMapper, highlightMapper } from 'utils/mappers'
-
-import gamesMock from 'components/GameCardSlider/mock'
 
 export default function WishlistPage(props: WishlistTemplateProps) {
   return <Wishlist {...props} />

@@ -6,12 +6,12 @@ import { ParsedUrlQueryInput } from 'querystring'
 
 import Base from 'templates/Base'
 
-import { parseQueryStringToFilter, parseQueryStringToWhere } from 'utils/filter'
-
 import Empty from 'components/Empty'
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
 import GameCard from 'components/GameCard'
 import { Grid } from 'components/Grid'
+
+import { parseQueryStringToFilter, parseQueryStringToWhere } from 'utils/filter'
 
 import * as S from './styles'
 
@@ -60,6 +60,7 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
               <Grid>
                 {data?.games.map((game) => (
                   <GameCard
+                    id={game.id}
                     key={game.slug}
                     title={game.name}
                     slug={game.slug}

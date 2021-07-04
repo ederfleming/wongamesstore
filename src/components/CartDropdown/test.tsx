@@ -1,8 +1,8 @@
 import { CartContextDefaultValues } from 'hooks/use-cart'
 
-import { render, screen } from 'utils/test-utils'
-
 import items from 'components/CartList/mock'
+
+import { render, screen } from 'utils/test-utils'
 
 import CartDropdown from '.'
 
