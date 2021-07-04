@@ -115,7 +115,7 @@ describe('cartMapper()', () => {
     const game = {
       id: '1',
       cover: {
-        url: 'image.jpg'
+        url: '/image.jpg'
       },
       name: 'game',
       price: 10

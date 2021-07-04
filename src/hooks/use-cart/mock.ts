@@ -15,7 +15,7 @@ export const gamesMock = {
           price: 10.5,
           developers: [{ name: 'sample developer' }],
           cover: {
-            url: 'sample-game.jpg'
+            url: '/sample-game.jpg'
           },
           __typename: 'Game'
         },
@@ -26,7 +26,7 @@ export const gamesMock = {
           price: 10.5,
           developers: [{ name: 'sample developer' }],
           cover: {
-            url: 'sample-game.jpg'
+            url: '/sample-game.jpg'
           },
           __typename: 'Game'
         }
