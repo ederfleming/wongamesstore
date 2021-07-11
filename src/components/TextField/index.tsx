@@ -2,7 +2,7 @@ import { useState, InputHTMLAttributes } from 'react'
 
 import * as S from './styles'
 export type TextFieldProps = {
-  onInput?: (value: string) => void
+  onInputChange?: (value: string) => void
   label?: string
   initialValue?: string
   icon?: React.ReactNode
@@ -19,14 +19,14 @@ const TextField = ({
   initialValue = '',
   error,
   disabled = false,
-  onInput,
+  onInputChange,
   ...props
 }: TextFieldProps) => {
   const [value, setValue] = useState(initialValue)
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value
     setValue(newValue)
-    !!onInput && onInput(newValue)
+    !!onInputChange && onInputChange(newValue)
   }
 
   return (
